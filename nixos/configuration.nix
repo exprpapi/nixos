@@ -319,6 +319,7 @@ in
       # home.packages = [ pkgs.atool pkgs.httpie ];
       # programs.bash.enable = true;
       programs.zsh.enable = true;
+
       programs.git = {
         enable = true;
         # signing.signByDefault = true;
@@ -743,6 +744,7 @@ in
       qbittorrent
       qrencode
       ranger
+      readline
       redshift
       ripgrep-all
       rmlint
