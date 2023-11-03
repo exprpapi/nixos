@@ -99,6 +99,12 @@ in
   
         sddm.enable = true;
       };
+
+      # dpi = 150;
+      # autorun = true;
+      # autoRepeatDelay = TODO;
+      # autoRepeatInterval = TODO;
+
       desktopManager.plasma5.enable = true;
       layout = "us";
       xkbVariant = "altgr-intl";
@@ -244,6 +250,7 @@ in
     adb.enable = true;
     tmux.enable = true;
     zsh.enable = true;
+    dconf.enable = true;
   };
   system.stateVersion = state_version;
   sound.enable = true;
@@ -300,10 +307,6 @@ in
 
   # services.getty.greetingLine = "";
   # services.getty.autologinUser = mainuser;
-  # services.xserver.dpi = 150;
-  # services.xserver.autorun = true;
-  # services.xserver.autoRepeatDelay = TODO;
-  # services.xserver.autoRepeatInterval = TODO;
   
   home-manager = {
     users.${mainuser} = { pkgs, ... }: {
