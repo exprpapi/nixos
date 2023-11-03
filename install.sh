@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 PS4="\e[34m[$(basename "${0}")"':${FUNCNAME[0]:+${FUNCNAME[0]}():}${LINENO:-}]: \e[0m'
 IFS=$'\n\t'
-set -euo pipefail
-set -x
-
-# creates the following layout:
-#
-# NAME FSTYPE  LABEL       MOUNTPOINTS
-# sda1 vfat    boot        /boot
-# sda2 crypto  luks
-# └─luks
-#      ext4    root        /nix/store, /
+set -euxo pipefail
 
 DISK=''
 BOOT_PART=''
@@ -58,7 +49,12 @@ partition() {
     --typecode="0:${ROOT_PART_TYPE_GUID}" \
     "${DISK}"
 
-  local partitions="$(lsblk -l "${DISK}" | grep part | cut -d ' ' -f 1 | head -n 2)"
+  local partitions="$(\
+    lsblk -l "${DISK}"
+    | grep part
+    | cut -d ' ' -f 1
+    | head -n 2
+  )"
 
   BOOT_PART="/dev/$(head -n 1 <<< "${partitions}")"
   ROOT_PART="/dev/$(tail -n 1 <<< "${partitions}")"
