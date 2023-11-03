@@ -599,7 +599,29 @@ in
   
   environment = {
     homeBinInPath = true;
-  
+    etc = {
+      "inputrc".text = ''
+        set editing-mode vi
+        set meta-flag on
+        set input-meta on
+        set convert-meta off
+        set output-meta on
+        
+        $if mode=vi
+        set show-mode-in-prompt on
+        set vi-ins-mode-string \1\e[6 q\2
+        set vi-cmd-mode-string \1\e[2 q\2
+        
+        set keymap vi-command
+        Control-l: clear-screen
+        Control-a: beginning-of-line
+        
+        set keymap vi-insert
+        Control-l: clear-screen
+        Control-a: beginning-of-line
+        $endif
+      '';
+    };
     systemPackages = with pkgs; [
       age
       alacritty
