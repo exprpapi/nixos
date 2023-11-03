@@ -297,7 +297,7 @@ in
   documentation = {
     enable = true;
     dev.enable = true;
-    doc.enable = true;
+    # doc.enable = true; # deprecated?
     man.enable = true;
     man.generateCaches = true;
     info.enable = true;
@@ -323,6 +323,7 @@ in
       programs.git = {
         enable = true;
         # signing.signByDefault = true;
+
         extraConfig = {
           init = {
             defaultBranch = "main";
@@ -448,11 +449,12 @@ in
       };
 
       programs.fzf = {
-         tmux.enableShellIntegration = true;
+        tmux.enableShellIntegration = true;
       };
 
       programs.tmux = {
         enable = true;
+
         extraConfig = ''
           set -g prefix M-space
 
@@ -600,6 +602,11 @@ in
   
   environment = {
     homeBinInPath = true;
+
+    sessionVariables = {
+      MOZ_USE_XINPUT2 = "1";
+    };
+
     etc = {
       "inputrc".text = ''
         set editing-mode vi
@@ -623,6 +630,7 @@ in
         $endif
       '';
     };
+
     systemPackages = with pkgs; [
       age
       alacritty
