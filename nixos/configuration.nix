@@ -246,9 +246,16 @@ in
     config.allowUnfree = true;
     hostPlatform = lib.mkDefault "x86_64-linux";
   };
+
+  programs.tmux.enable = true;
+  programs.tmux.newSession = true;
+  programs.tmux.keyMode = "vi";
+  programs.tmux.escapeTime = 0;
+  programs.tmux.historyLimit = -1;
+
   programs = {
     adb.enable = true;
-    tmux.enable = true;
+    # tmux.enable = true;
     zsh.enable = true;
     dconf.enable = true;
   };
